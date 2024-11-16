@@ -72,12 +72,12 @@ router.post('/login', async (req, res) => {
     }
 
     //setup customer session
-    req.session.email = existingCustomer.email;
-    req.session.customer_id = existingCustomer.id;
-    req.session.name = existingCustomer.firstName + ' ' + existingCustomer.lastName;
+    // req.session.email = existingCustomer.email;
+    // req.session.customer_id = existingCustomer.id;
+    // req.session.name = existingCustomer.firstName + ' ' + existingCustomer.lastName;
 
     //send response
-    res.send('Login route');
+    res.json({ 'Customer email': existingCustomer.email });
 });
 
 //logout route
