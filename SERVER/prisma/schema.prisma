@@ -19,7 +19,7 @@ model Customer {
 }
 
 model Product {
-  customer_id Int     @id @default(autoincrement())
+  product_id  Int     @id @default(autoincrement())
   name        String
   description String
   cost        Decimal

@@ -9,7 +9,7 @@ CREATE TABLE "Customer" (
 
 -- CreateTable
 CREATE TABLE "Product" (
-    "customer_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "product_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "cost" DECIMAL NOT NULL,
