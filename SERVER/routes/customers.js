@@ -41,7 +41,7 @@ router.post('/signup', async (req, res) => {
     });
 
     //send response
-    res.json({ 'customer': email });
+    res.json({ customer });
 });
 
 //login route
@@ -90,3 +90,5 @@ router.post('/logout', (req, res) => {
 router.get('/getsession', (req, res) => {
     res.json({ 'customer': req.session.email });
 });
+
+export default router;

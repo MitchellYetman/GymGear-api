@@ -44,3 +44,5 @@ router.get('/:id', async (req, res) => {
 router.post('/purchase', async (req, res) => {
     res.send("Purchase route");
 });
+
+export default router;
