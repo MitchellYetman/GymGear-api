@@ -15,10 +15,10 @@ router.get('/all', async (req, res) => {
 // Get product by id
 router.get('/:id', async (req, res) => {
 
-    const id = req.params.id;
+    const product_id = req.params.id;
 
     //validate id is a number
-    if (isNaN(id)) {
+    if (isNaN(product_id)) {
         return res.status(400).json({
             message: "Invalid product id"
         })
@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
     //ensure the product exists
     const product = await prisma.product.findUnique({
         where: {
-            id: parseInt(id)
+            product_id: parseInt(product_id)
         },
     })
 

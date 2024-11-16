@@ -13,7 +13,7 @@ CREATE TABLE "Product" (
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "cost" DECIMAL NOT NULL,
-    "filename" TEXT
+    "image_filename" TEXT
 );
 
 -- CreateIndex
