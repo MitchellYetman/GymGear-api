@@ -2,6 +2,7 @@ import express from 'express';
 import customersRouter from './routes/customers.js';
 import productsRouter from './routes/products.js';
 import cors from 'cors';
+import session from 'express-session'
 
 const port = process.env.PORT || 3000;
 const app = express();

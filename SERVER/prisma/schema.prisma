@@ -25,3 +25,29 @@ model Product {
   cost           Decimal
   image_filename String?
 }
+
+model Purchase {
+  purchase_id   Int      @id @default(autoincrement())
+  customer_id   Int
+  street        String
+  city          String
+  province      String
+  country       String
+  postal_code   String
+  credit_card   String
+  credit_expire String
+  credit_cvv    String
+  invoice_amt   Decimal
+  invoice_tax   Decimal
+  invoice_total Decimal
+  order_date    DateTime @default(now())
+}
+
+model PurchaseItem {
+  purchase_id Int
+  product_id  Int
+  quantity    Int
+
+  //composite key
+  @@id([purchase_id, product_id])
+}

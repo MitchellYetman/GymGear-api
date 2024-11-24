@@ -1,6 +1,6 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
-import { hashPassword, comparePassword } from './lib/utility.js';
+import { hashPassword, comparePassword } from '../lib/utility.js';
 
 const router = express.Router();
 
@@ -71,7 +71,7 @@ router.post('/login', async (req, res) => {
     }
 
     //setup customer session
-    req.session.customer_id = existingCustomer.id;
+    req.session.customer_id = existingCustomer.customer_id;
     req.session.email = existingCustomer.email;
     req.session.firstName = existingCustomer.firstName;
     req.session.lastName = existingCustomer.lastName;
@@ -88,7 +88,16 @@ router.post('/logout', (req, res) => {
 
 //getsession route
 router.get('/getsession', (req, res) => {
-    res.json({ 'customer': req.session.email });
+    if (req.session) {
+        res.json({
+            'Customer ID': req.session.customer_id,
+            'Email': req.session.email,
+            'First name': req.session.firstName,
+            'Last name': req.session.lastName
+        });
+    } else {
+        res.status(401).send("Not logged in")
+    }
 });
 
 export default router;
