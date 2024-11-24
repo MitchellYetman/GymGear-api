@@ -1,24 +1,10 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
-import { hashPassword, comparePassword } from '../lib/utility.js';
-import multer from 'multer';
+import { hashPassword, comparePassword } from './lib/utility.js';
 
 const router = express.Router();
 
 const prisma = new PrismaClient();
-
-// Multer setup
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/images/'); // save uploaded files in `public/images` folder
-    },
-    // filename: function (req, file, cb) {
-    //     const ext = file.originalname.split('.').pop(); // get file extension
-    //     const uniqueFilename = Date.now() + '-' + Math.round(Math.random() * 1000) + '.' + ext; // generate unique filename - current timestamp + random number between 0 and 1000.
-    //     cb(null, uniqueFilename);
-    // }
-});
-const upload = multer({ storage: storage });
 
 router.post('/signup', async (req, res) => {
 
@@ -85,9 +71,10 @@ router.post('/login', async (req, res) => {
     }
 
     //setup customer session
-    // req.session.email = existingCustomer.email;
-    // req.session.customer_id = existingCustomer.id;
-    // req.session.name = existingCustomer.firstName + ' ' + existingCustomer.lastName;
+    req.session.customer_id = existingCustomer.id;
+    req.session.email = existingCustomer.email;
+    req.session.firstName = existingCustomer.firstName;
+    req.session.lastName = existingCustomer.lastName;
 
     //send response
     res.json({ 'Customer email': existingCustomer.email });

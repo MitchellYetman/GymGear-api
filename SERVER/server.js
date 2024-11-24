@@ -10,7 +10,22 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use(cors());
+app.use(cors({
+    credentials: true
+}));
+
+//express session setup
+app.use(session({
+    secret: '0*nhfg-4svf^gdhfu76#Ra2A',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        secure: false,
+        sameSite: 'lax',
+        maxAge: 3600000
+    }
+}));
 
 //routes
 app.use('/api/customers', customersRouter);
