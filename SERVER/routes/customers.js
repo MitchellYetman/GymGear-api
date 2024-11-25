@@ -1,6 +1,7 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import { hashPassword, comparePassword } from '../lib/utility.js';
+import PasswordValidator from 'password-validator';
 
 const router = express.Router();
 
@@ -24,6 +25,21 @@ router.post('/signup', async (req, res) => {
     });
     if (existingCustomer) {
         return res.status(400).send('Customer already exists');
+    }
+
+    //Password validation all from https://www.npmjs.com/package/password-validator
+    let schema = new PasswordValidator();
+
+    schema
+        .is().min(8)
+        .has().digits(1)
+        .has().uppercase(1)
+        .has().lowercase(1)
+
+    schema.validate(password);
+
+    if (!schema.validate(password)) {
+        return res.status(400).send("Password does not meet requirements. Must contain at least 8 characters, 1 digit, 1 uppercase letter, and 1 lowercase letter")
     }
 
     //hash password
@@ -83,12 +99,12 @@ router.post('/login', async (req, res) => {
 //logout route
 router.post('/logout', (req, res) => {
     req.session.destroy();
-    res.send('Logout route');
+    res.send('User logged out');
 });
 
 //getsession route
 router.get('/getsession', (req, res) => {
-    if (req.session) {
+    if (req.session.customer_id) {
         res.json({
             'Customer ID': req.session.customer_id,
             'Email': req.session.email,
@@ -96,7 +112,7 @@ router.get('/getsession', (req, res) => {
             'Last name': req.session.lastName
         });
     } else {
-        res.status(401).send("Not logged in")
+        return res.status(401).send("Not logged in")
     }
 });
 

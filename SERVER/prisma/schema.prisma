@@ -48,6 +48,6 @@ model PurchaseItem {
   product_id  Int
   quantity    Int
 
-  //composite key
+  //composite key from ChatGPT
   @@id([purchase_id, product_id])
 }

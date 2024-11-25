@@ -35,16 +35,16 @@ router.get('/:id', async (req, res) => {
         res.json(product);
     }
     else {
-        res.status(404).json({ message: 'Product not found.' })
+        return res.status(404).json({ message: 'Product not found.' })
     }
 });
 
 //purchase
 router.post('/purchase', async (req, res) => {
 
-    //ensure a user is logged in
-    if (!req.session) {
-        res.status(401).send("Unauthorized. Must be logged in to continue purchase")
+    //ensure a user is logged in. just using !req.session didn't work, so I just used one of the variables
+    if (!req.session.customer_id) {
+        return res.status(401).send("Unauthorized. Must be logged in to continue purchase")
     }
 
     //request body
@@ -58,7 +58,7 @@ router.post('/purchase', async (req, res) => {
         })
     }
 
-    //calculating subtotal to fill in invoice_amt
+    //calculating subtotal to fill in invoice fields
     const cartArray = cart.split(",");
     let subtotal = 0;
 
@@ -69,9 +69,7 @@ router.post('/purchase', async (req, res) => {
             }
         })
 
-        if (product) {
-            subtotal += parseFloat(product.cost)
-        }
+        subtotal += parseFloat(product.cost)
     }
 
     //add purchase to purchase table in database
@@ -87,8 +85,8 @@ router.post('/purchase', async (req, res) => {
             credit_expire: credit_expire,
             credit_cvv: credit_cvv,
             invoice_amt: subtotal,
-            invoice_tax: subtotal * 0.15,
-            invoice_total: subtotal * 1.15
+            invoice_tax: (subtotal * 0.15).toFixed(2),
+            invoice_total: (subtotal * 1.15).toFixed(2)
         },
     });
 
