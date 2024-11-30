@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import Sidebar from './ui/Sidebar'
+import Nav from './ui/Nav';
 
 function App() {
 
@@ -8,7 +8,7 @@ function App() {
       <h1>App.jsx parent page</h1>
       <p>This is the parent page</p>
       <div>
-        <Sidebar />
+        <Nav />
       </div>
       <br />
       <hr />
