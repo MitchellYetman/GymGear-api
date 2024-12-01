@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <h1>App.jsx parent page</h1>
+      <h1>Welcome to GymGear</h1>
       <p></p>
       <div>
         <Nav />
