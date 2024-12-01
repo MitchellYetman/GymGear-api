@@ -8,3 +8,8 @@
     min-width: 300px;
     padding-left: 1em;
 }
+
+.thumbnail-large {
+    width: 200px;
+    height: 200px;
+}

@@ -6,7 +6,7 @@ export default function Card(props) {
             <div className="card-body">
                 <div className="d-flex align-items-center position-relative">
                     <img src={`${props.apiHost}/images/${props.product.image_filename}`} className="thumbnail" onClick={() => {
-                        window.location.href = "/details"
+                        window.location.href = "/details/" + props.product.product_id
                     }} />
 
                     <div className="product-info">
