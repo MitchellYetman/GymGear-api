@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 export default function Details() {
     const [product, setProduct] = useState(null);
     const { id } = useParams();
     const apiHost = import.meta.env.VITE_APP_HOST;
     const getUrl = apiHost + '/api/products/' + id;
+    const [cookies, setCookie, removeCookie] = useCookies(["productIDs"]);
 
 
     //fetch the product data
@@ -28,6 +30,18 @@ export default function Details() {
         return <p>Loading product details...</p>;
     }
 
+    function addProduct(id) {
+        if (cookies.productIDs) {
+            setCookie('productIDs', cookies.productIDs + "," + id.toString())
+        } else {
+            setCookie('productIDs', id.toString())
+        }
+    }
+
+    function deleteCookie() {
+        removeCookie('productIDs')
+    }
+
 
     return (
         <>
@@ -37,7 +51,8 @@ export default function Details() {
                 <b>Cost: $</b>{product.cost}<br />
                 <b>Description: </b>{product.description}<br />
                 <Link to="/" className="btn btn-outline-secondary ms-3">Go back</Link>
-                <button className="btn btn-outline-secondary ms-3">Add to cart</button>
+                <button className="btn btn-outline-secondary ms-3" onClick={() => addProduct(id)}>Add to cart</button><br />
+                <p>Cookie value: {cookies.productIDs}</p>
             </div>
         </>
     )
