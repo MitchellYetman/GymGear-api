@@ -47,7 +47,7 @@ export default function Details() {
             <div>
                 <h1>Product details for {product.name}</h1>
                 <img src={`${apiHost}/images/${product.image_filename}`} className="thumbnail-large" /><br />
-                <b>Cost: $</b>{product.cost}<br />
+                <b>Cost: </b>${product.cost}<br />
                 <b>Description: </b>{product.description}<br />
                 <Link to="/" className="btn btn-outline-secondary ms-3">Go back</Link>
                 <button className="btn btn-outline-secondary ms-3" onClick={() => addProduct(id)}>Add to cart</button><br />

@@ -10,7 +10,7 @@ export default function Card(props) {
                     <div className="product-info">
                         <h5 className="card-title">{props.product.name}</h5>
                         <p className="card-text">
-                            <b>Cost: $</b>{props.product.cost}
+                            <b>Cost: </b>${props.product.cost}
                         </p>
                     </div>
                 </div>

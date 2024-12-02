@@ -11,9 +11,9 @@ export default function CartCard(props) {
                         <h5 className="card-title">{props.product.name}</h5>
                         <p className="card-text">
                             <b>Name: </b>{props.product.name}<br />
-                            <b>Cost (each): $</b>{props.product.cost}<br />
+                            <b>Cost (each): </b>${props.product.cost}<br />
                             <b>Quantity: </b>{props.quantity}<br />
-                            <b>Total: $</b>{props.product.cost * props.quantity}
+                            <b>Total: </b>${props.product.cost * props.quantity}
                         </p>
                     </div>
                 </div>

@@ -8,12 +8,12 @@ export default function Cart() {
     const apiHost = import.meta.env.VITE_APP_HOST;
     const apiUrl = apiHost + '/api/products/all';
 
-
-    //****NOTE FOR PRESENTATION: tried to do it without fetching all products since that isn't very scalable or efficient with larger databases, but couldn't get it to work. not enough time to mess around with it for longer so just had to leave it as is, but i'm confident I could get it to work.
-
     //ensure productIDs cookie is present before proceeding
     if (!cookies.productIDs) {
-        return <p>Loading cookies...</p>
+        return <>
+            <p>No products in cart</p>
+            <button className="btn btn-outline-secondary ms-3" onClick={() => window.location.href = "/"}>Continue shopping</button>
+        </>
     }
 
     //fetch product data
