@@ -9,6 +9,8 @@ const prisma = new PrismaClient();
 
 router.post('/signup', async (req, res) => {
 
+    console.log("Recieved:", req.body)
+
     //get customer input
     const { email, password, firstName, lastName } = req.body;
 

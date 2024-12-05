@@ -25,31 +25,31 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: "/Details/:id",
+        path: "/details/:id",
         element: <Details />
       },
       {
-        path: "/Signup",
+        path: "/signup",
         element: <Signup />
       },
       {
-        path: "/Login",
+        path: "/login",
         element: <Login />
       },
       {
-        path: "/Logout",
+        path: "/logout",
         element: <Logout />
       },
       {
-        path: "/Cart",
+        path: "/cart",
         element: <Cart />
       },
       {
-        path: "/Checkout",
+        path: "/checkout",
         element: <Checkout />
       },
       {
-        path: "/Confirmation",
+        path: "/confirmation",
         element: <Confirmation />
       },
     ]
