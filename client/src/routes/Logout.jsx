@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 export default function Logout() {
     const [status, setStatus] = useState("Logging out...");
+    const setIsLoggedIn = useOutletContext();
 
     useEffect(() => {
         async function logout() {
@@ -14,6 +15,7 @@ export default function Logout() {
 
             if (response.ok) {
                 setStatus("Successfully logged out");
+                setIsLoggedIn(false);
             } else {
                 setStatus("Error encountered. Try again")
             }

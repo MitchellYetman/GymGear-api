@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext, useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 
 export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [loginFail, setLoginFail] = useState(false);
     const apiHost = import.meta.env.VITE_APP_HOST;
     const apiUrl = apiHost + '/api/customers/login';
+    const setIsLoggedIn = useOutletContext();
+    const navigate = useNavigate(); //from ChatGPT to avoid page reload and resetting state of isLoggedIn
 
     function loginUser(data) {
         const formData = new FormData();
@@ -23,7 +26,9 @@ export default function Login() {
             });
 
             if (response.ok) {
-                window.location.href = "/";
+                navigate("/") //from ChatGPT to avoid page reload and resetting state of isLoggedIn
+                setIsLoggedIn(true);
+
             } else {
                 setLoginFail(true);
             }
