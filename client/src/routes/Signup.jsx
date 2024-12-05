@@ -13,24 +13,13 @@ export default function Signup() {
         formData.append('firstName', data.firstName);
         formData.append('lastName', data.lastName);
 
-        async function postSignupData() {
-            // const response = await fetch(apiUrl, {
-            //     method: 'POST',
-            //     body: formData,
-            // });
-
-            //help from ChatGPT. would not take the above code for some reason even though I have basically the exact same request in my assignment 2 code (which works fine)
+        async function trySignup() {
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json', // Set content type explicitly for JSON
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    email: data.email,
-                    password: data.password,
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                }),
+                body: JSON.stringify(data),
             });
 
             if (response.ok) {
@@ -40,7 +29,7 @@ export default function Signup() {
             }
         }
 
-        postSignupData();
+        trySignup();
     }//end createUser
 
 
