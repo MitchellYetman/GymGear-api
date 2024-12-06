@@ -10,7 +10,7 @@ export default function Logout() {
             const url = "http://localhost:3000/api/customers/logout";
             const response = await fetch(url, {
                 method: "POST",
-                credentials: 'include' //include cookies in request
+                credentials: 'include'
             });
 
             if (response.ok) {

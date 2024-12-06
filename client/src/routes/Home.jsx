@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import Card from '../ui/Card';
-import { useCookies } from 'react-cookie';
 
 export default function Home() {
     const [products, setProducts] = useState([]);
     const apiHost = import.meta.env.VITE_APP_HOST;
     const apiUrl = apiHost + '/api/products/all';
-    const [cookies, setCookie] = useCookies(["productIDs"]);
 
     //fetch product data
     useEffect(() => {

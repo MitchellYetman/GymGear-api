@@ -1,10 +1,32 @@
 import { Outlet } from 'react-router-dom';
 import Nav from './ui/Nav';
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [sessionData, setSessionData] = useState();
+  const apiHost = import.meta.env.VITE_APP_HOST;
+  const getSessionUrl = apiHost + '/api/customers/getsession';
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    async function getSession() {
+      const response = await fetch(getSessionUrl, {
+        method: 'GET',
+        credentials: 'include'
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setSessionData(data);
+        setIsLoggedIn(true);
+        console.log(data);
+
+      } else {
+        setSessionData(null);
+        setIsLoggedIn(false);
+      }
+    }
+    getSession();
+  }, []);
 
   return (
     <>

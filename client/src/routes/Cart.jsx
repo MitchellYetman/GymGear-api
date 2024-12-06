@@ -1,35 +1,33 @@
 import { useCookies } from 'react-cookie';
 import { useState, useEffect } from 'react';
 import CartCard from '../ui/CartCard';
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
     const [products, setProducts] = useState([]);
     const [cookies, setCookie] = useCookies(["productIDs"]);
     const apiHost = import.meta.env.VITE_APP_HOST;
     const apiUrl = apiHost + '/api/products/all';
-
-    //ensure productIDs cookie is present before proceeding
-    if (!cookies.productIDs) {
-        return <>
-            <p>No products in cart</p>
-            <button className="btn btn-outline-secondary ms-3" onClick={() => window.location.href = "/"}>Continue shopping</button>
-        </>
-    }
+    let navigate = useNavigate()
 
     //fetch product data
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch(apiUrl, {
-                credentials: 'include'
-            });
+            if (cookies.productIDs) {
+                const response = await fetch(apiUrl, {
+                    credentials: 'include'
+                });
 
-            if (response.ok) {
-                const data = await response.json();
-                if (!ignore) {
-                    setProducts(data);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (!ignore) {
+                        setProducts(data);
+                    }
+                } else {
+                    setProducts([]);
                 }
             } else {
-                setProducts(null);
+                setProducts([]);
             }
         }
 
@@ -38,19 +36,28 @@ export default function Cart() {
         return () => {
             ignore = true;
         }
-    }, []);
+    }, [cookies.productIDs]);
 
-
-    //ensure products has been populated before proceeding
-    if (products.length == 0) {
-        return <p>Loading products...</p>
+    //check if cookies are present or if products were fetched. this only worked if both conditions were present, and not with one or the other.
+    if (cookies.productIDs === '' || products.length === 0) {
+        return (
+            <>
+                <p>No products in cart</p>
+                <button className="btn btn-outline-secondary ms-3" onClick={() => navigate("/")}>Continue shopping</button>
+            </>
+        );
     }
 
     //split the cookie on the comma and turn all numbers back to integers
-    const productsArray = cookies.productIDs.split(",");
-    productsArray.forEach(num => {
-        parseInt(num)
-    })
+    let productsArray = [];
+    if (cookies.productIDs.length > 1) {
+        productsArray = cookies.productIDs.split(",");
+        productsArray.forEach(num => {
+            parseInt(num)
+        })
+    } else {
+        productsArray[0] = parseInt(cookies.productIDs)
+    }
 
     //get each unique id and their quantities 
     const counts = {};
@@ -71,12 +78,14 @@ export default function Cart() {
             <h1>Cart</h1>
             {
                 uniqueIDs.map(id => (
-                    <CartCard product={products[id - 1]} apiHost={apiHost} quantity={counts[id]} />
+                    <CartCard product={products[id - 1]} apiHost={apiHost} quantity={counts[id]} cookie={cookies.productIDs} setCookie={setCookie} />
                 ))
             }<br />
-            <h2>Subtotal: ${subtotal}</h2>
-            <button className="btn btn-outline-secondary ms-3" onClick={() => window.location.href = "/"}>Continue shopping</button>
-            <button className="btn btn-outline-secondary ms-3" onClick={() => window.location.href = "/checkout"}>Complete purchase</button>
+            <h4>Subtotal: ${subtotal.toFixed(2)}</h4>
+            <h4>Tax: ${(subtotal * 0.15).toFixed(2)}</h4>
+            <h2>Total: ${(subtotal * 1.15).toFixed(2)}</h2>
+            <button className="btn btn-outline-secondary ms-3" onClick={() => navigate('/')}>Continue shopping</button>
+            <button className="btn btn-outline-secondary ms-3" onClick={() => navigate('/checkout')}>Complete purchase</button>
 
 
         </>

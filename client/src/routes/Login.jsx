@@ -19,6 +19,7 @@ export default function Login() {
         async function tryLogin() {
             const response = await fetch(apiUrl, {
                 method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },

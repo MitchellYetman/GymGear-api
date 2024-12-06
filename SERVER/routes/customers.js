@@ -89,10 +89,14 @@ router.post('/login', async (req, res) => {
     }
 
     //setup customer session
-    req.session.customer_id = existingCustomer.customer_id;
-    req.session.email = existingCustomer.email;
-    req.session.firstName = existingCustomer.firstName;
-    req.session.lastName = existingCustomer.lastName;
+    if (!req.session.customer_id) {
+        req.session.customer_id = existingCustomer.customer_id;
+        req.session.email = existingCustomer.email;
+        req.session.firstName = existingCustomer.firstName;
+        req.session.lastName = existingCustomer.lastName;
+    }
+
+    console.log(req.session)
 
     //send response
     res.json({ 'Customer email': existingCustomer.email });
