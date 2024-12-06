@@ -38,7 +38,7 @@ function App() {
       <br />
       <hr />
       <div>
-        <Outlet context={setIsLoggedIn} />
+        <Outlet context={{ isLoggedIn, setIsLoggedIn }} />
       </div>
     </>
   )

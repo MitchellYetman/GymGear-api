@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { Link, useOutletContext } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 export default function Logout() {
     const [status, setStatus] = useState("Logging out...");
-    const setIsLoggedIn = useOutletContext();
+    const { setIsLoggedIn } = useOutletContext();
+    const [setCookie] = useCookies(["productIDs"]);
 
     useEffect(() => {
         async function logout() {
@@ -16,6 +18,7 @@ export default function Logout() {
             if (response.ok) {
                 setStatus("Successfully logged out");
                 setIsLoggedIn(false);
+                setCookie('productIDs', "", { path: '/' })
             } else {
                 setStatus("Error encountered. Try again")
             }

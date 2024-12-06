@@ -7,7 +7,7 @@ export default function Nav(props) {
             {props.isLoggedIn && <Link to="/logout">Logout</Link>}
             {!props.isLoggedIn && <Link to="/login">Login</Link>}
             <Link to="/cart"><i className="bi bi-cart"></i></Link>
-            <Link to="/signup">Signup</Link>
+            {!props.isLoggedIn && <Link to="/signup">Signup</Link>}
 
         </>
     )

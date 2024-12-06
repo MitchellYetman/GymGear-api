@@ -1,14 +1,24 @@
 import { useCookies } from 'react-cookie';
 import { useState, useEffect } from 'react';
 import CartCard from '../ui/CartCard';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 export default function Cart() {
     const [products, setProducts] = useState([]);
     const [cookies, setCookie] = useCookies(["productIDs"]);
     const apiHost = import.meta.env.VITE_APP_HOST;
     const apiUrl = apiHost + '/api/products/all';
+    const { isLoggedIn } = useOutletContext()
     let navigate = useNavigate()
+
+    if (!isLoggedIn) {
+        return (
+            <>
+                <p>Please log in to continue </p>
+                <button className="btn btn-outline-secondary ms-3" onClick={() => navigate("/login")}>Login</button>
+            </>
+        );
+    }
 
     //fetch product data
     useEffect(() => {

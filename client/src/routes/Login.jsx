@@ -8,8 +8,8 @@ export default function Login() {
     const [loginFail, setLoginFail] = useState(false);
     const apiHost = import.meta.env.VITE_APP_HOST;
     const apiUrl = apiHost + '/api/customers/login';
-    const setIsLoggedIn = useOutletContext();
-    const navigate = useNavigate(); //from ChatGPT to avoid page reload and resetting state of isLoggedIn
+    const { setIsLoggedIn } = useOutletContext();
+    const navigate = useNavigate();
 
     function loginUser(data) {
         const formData = new FormData();
@@ -27,7 +27,7 @@ export default function Login() {
             });
 
             if (response.ok) {
-                navigate("/") //from ChatGPT to avoid page reload and resetting state of isLoggedIn
+                navigate("/")
                 setIsLoggedIn(true);
 
             } else {
