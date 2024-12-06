@@ -13,7 +13,7 @@ export default function Card(props) {
                     <div className="product-info">
                         <h5 className="card-title">{props.product.name}</h5>
                         <p className="card-text">
-                            <b>Cost: </b>${(props.product.cost * 1).toFixed(2)}
+                            ${(props.product.cost * 1).toFixed(2)}
                         </p>
                     </div>
                 </div>

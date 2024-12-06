@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 export default function Logout() {
     const [status, setStatus] = useState("Logging out...");
     const { setIsLoggedIn } = useOutletContext();
-    const [setCookie] = useCookies(["productIDs"]);
+    const [cookie, setCookie] = useCookies(["productIDs"]);
 
     useEffect(() => {
         async function logout() {

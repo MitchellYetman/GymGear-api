@@ -18,8 +18,6 @@ function App() {
         const data = await response.json();
         setSessionData(data);
         setIsLoggedIn(true);
-        console.log(data);
-
       } else {
         setSessionData(null);
         setIsLoggedIn(false);
@@ -38,7 +36,7 @@ function App() {
       <br />
       <hr />
       <div>
-        <Outlet context={{ isLoggedIn, setIsLoggedIn }} />
+        <Outlet context={{ isLoggedIn, setIsLoggedIn, sessionData }} />
       </div>
     </>
   )

@@ -51,7 +51,6 @@ export default function CartCard(props) {
                     <div className="product-info">
                         <h5 className="card-title">{props.product.name}</h5>
                         <p className="card-text">
-                            <b>Name: </b>{props.product.name}<br />
                             <b>Cost (each): </b>${props.product.cost}<br />
                             <b>Quantity: </b>{props.quantity}<button onClick={removeProduct} className="btn btn-outline-secondary ms-3">-</button><button className="btn btn-outline-secondary ms-3" onClick={removeAllProduct}>Remove all</button><br />
                             <b>Total: </b>${(props.product.cost * props.quantity).toFixed(2)}

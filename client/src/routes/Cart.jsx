@@ -11,15 +11,6 @@ export default function Cart() {
     const { isLoggedIn } = useOutletContext()
     let navigate = useNavigate()
 
-    if (!isLoggedIn) {
-        return (
-            <>
-                <p>Please log in to continue </p>
-                <button className="btn btn-outline-secondary ms-3" onClick={() => navigate("/login")}>Login</button>
-            </>
-        );
-    }
-
     //fetch product data
     useEffect(() => {
         async function fetchData() {
@@ -95,7 +86,7 @@ export default function Cart() {
             <h4>Tax: ${(subtotal * 0.15).toFixed(2)}</h4>
             <h2>Total: ${(subtotal * 1.15).toFixed(2)}</h2>
             <button className="btn btn-outline-secondary ms-3" onClick={() => navigate('/')}>Continue shopping</button>
-            <button className="btn btn-outline-secondary ms-3" onClick={() => navigate('/checkout')}>Complete purchase</button>
+            <button className="btn btn-outline-secondary ms-3" onClick={() => navigate('/checkout')}>Go to checkout</button>
 
 
         </>

@@ -96,8 +96,6 @@ router.post('/login', async (req, res) => {
         req.session.lastName = existingCustomer.lastName;
     }
 
-    console.log(req.session)
-
     //send response
     res.json({ 'Customer email': existingCustomer.email });
 });
@@ -121,5 +119,6 @@ router.get('/getsession', (req, res) => {
         return res.status(401).send("Not logged in")
     }
 });
+
 
 export default router;

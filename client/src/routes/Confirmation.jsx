@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom";
+
 export default function Confirmation() {
     return (
         <>
             <div>
-                <h1>Confirmation page</h1>
+                <p>Purchase completed successfully</p>
+                <Link to="/" className="btn btn-outline-secondary ms-3">Continue shopping</Link>
             </div>
         </>
     )
