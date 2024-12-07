@@ -8,6 +8,7 @@ function App() {
   const apiHost = import.meta.env.VITE_APP_HOST;
   const getSessionUrl = apiHost + '/api/customers/getsession';
 
+  //get session data
   useEffect(() => {
     async function getSession() {
       const response = await fetch(getSessionUrl, {

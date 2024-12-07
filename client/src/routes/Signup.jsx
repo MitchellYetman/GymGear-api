@@ -1,11 +1,14 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 export default function Signup() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const apiHost = import.meta.env.VITE_APP_HOST;
     const apiUrl = apiHost + '/api/customers/signup';
+    const navigate = useNavigate()
 
+    //create form and post data
     function createUser(data) {
         const formData = new FormData();
         formData.append('email', data.email);
@@ -23,7 +26,7 @@ export default function Signup() {
             });
 
             if (response.ok) {
-                window.location.href = '/login';
+                navigate('/login')
             } else {
                 alert("Signup failed. Please try again.")
             }

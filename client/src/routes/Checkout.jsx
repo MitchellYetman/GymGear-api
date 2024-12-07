@@ -10,15 +10,18 @@ export default function Checkout() {
     const { isLoggedIn } = useOutletContext()
     let navigate = useNavigate()
 
+    //link to log in if not logged in
     if (!isLoggedIn) {
         return (
             <>
+                <h1 style={{ color: "white" }}>Checkout </h1>
                 <p style={{ color: "white" }}>Please log in to continue </p>
                 <button className="btn btn-primary" onClick={() => navigate("/login")}>Login</button>
             </>
         );
     }
 
+    //create and post form data
     function completePurchase(data) {
         const formData = new FormData();
         formData.append('street', data.street);
@@ -51,8 +54,6 @@ export default function Checkout() {
         tryPurchase();
     }//end completePurchase
 
-
-
     return (
         <>
             <div style={{ color: "white" }}>
@@ -61,7 +62,7 @@ export default function Checkout() {
                     <div className="mb-3">
                         <label className="form-label" style={{ color: "white" }}>Street:</label>
                         <input {...register("street", { required: true })} type="text" className="form-control bg-light" style={{ width: '300px' }} />
-                        {errors.email && <span className="text-danger">Street is required</span>}
+                        {errors.street && <span className="text-danger">Street is required</span>}
                     </div>
                     <div className="mb-3">
                         <label className="form-label" style={{ color: "white" }}>City:</label>

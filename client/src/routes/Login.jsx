@@ -11,6 +11,7 @@ export default function Login() {
     const { setIsLoggedIn } = useOutletContext();
     const navigate = useNavigate();
 
+    //create form and post data
     function loginUser(data) {
         const formData = new FormData();
         formData.append('email', data.email);
@@ -55,7 +56,7 @@ export default function Login() {
                     </div>
                     {loginFail && <p className="text-danger">Incorrect username or password.</p>}
                     <button type="submit" className="btn btn-primary">Login</button>
-                    <Link to="/signup" className="btn btn-outline-secondary ms-3" style={{ color: "black", backgroundColor: "white" }}>Signup</Link>
+                    <Link to="/signup" className="btn btn-outline-secondary ms-3" style={{ color: "black", backgroundColor: "white" }}>Create account</Link>
                 </form>
             </div>
         </>

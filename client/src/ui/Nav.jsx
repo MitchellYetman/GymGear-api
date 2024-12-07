@@ -9,6 +9,7 @@ export default function Nav(props) {
                     <b>Home</b>
                 </div>
 
+                {/*display logout if logged in */}
                 {props.isLoggedIn &&
                     <div className="d-flex align-items-center position-relative">
                         <div style={{ fontSize: "24px", paddingRight: "5px", paddingLeft: "5px" }}>|</div>
@@ -18,6 +19,7 @@ export default function Nav(props) {
                     </div>
                 }
 
+                {/*display login and signup if logged out */}
                 {!props.isLoggedIn &&
                     <div className="d-flex align-items-center position-relative">
                         <div style={{ fontSize: "24px", paddingRight: "5px", paddingLeft: "5px" }}>|</div>

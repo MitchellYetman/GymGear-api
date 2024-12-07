@@ -47,7 +47,7 @@ export default function Details() {
             <div style={{ color: "white" }}>
                 <h1 style={{ color: "white" }}>Product details for {product.name}</h1>
                 <img src={`${apiHost}/images/${product.image_filename}`} className="thumbnail-large" /><br />
-                <b >Cost: </b>${product.cost}<br />
+                <b >Cost: </b>${(product.cost * 1).toFixed(2)}<br />
                 <b>Description: </b>{product.description}<br />
                 <Link to="/" className="btn btn-outline-secondary ms-3" style={{ color: "black", backgroundColor: "white" }}>Go back</Link>
                 <button className="btn btn-outline-secondary ms-3" onClick={() => addProduct(id)} style={{ color: "black", backgroundColor: "white" }}>Add to cart</button><br />

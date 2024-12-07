@@ -43,6 +43,7 @@ export default function Cart() {
     if (cookies.productIDs === '' || products.length === 0) {
         return (
             <>
+                <h1 style={{ color: "white" }}>Cart</h1>
                 <p style={{ color: "white" }}>No products in cart</p>
                 <button className="btn btn-outline-secondary ms-3" onClick={() => navigate("/")} style={{ color: "black", backgroundColor: "white" }}>Continue shopping</button>
             </>

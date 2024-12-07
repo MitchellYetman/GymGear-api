@@ -37,7 +37,7 @@ export default function Home() {
                 <div style={{ textAlign: "center" }} >
                     <h1 style={{ color: "white" }}>Products</h1>
                 </div>
-                <div className="card-container" >
+                <div className="card-container">
                     {
                         products.length > 0 ?
                             products.map(product => (

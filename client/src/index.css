@@ -15,6 +15,7 @@
     height: 200px;
 }
 
+/*card-container styles from ChatGPT*/
 .card-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -29,7 +30,5 @@
 .card-container>* {
     display: flex;
     justify-content: center;
-    /* Centers card content horizontally */
     align-items: center;
-    /* Centers card content vertically */
 }
