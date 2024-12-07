@@ -30,7 +30,7 @@ export default function Details() {
 
     //make sure product is populated before proceeding
     if (!product) {
-        return <p>Loading product details...</p>;
+        return <p style={{ color: "white" }}>Loading product details...</p>;
     }
 
     //function to add the product id to the cookie or create one with the product id if one does not exist
@@ -44,13 +44,13 @@ export default function Details() {
 
     return (
         <>
-            <div>
-                <h1>Product details for {product.name}</h1>
+            <div style={{ color: "white" }}>
+                <h1 style={{ color: "white" }}>Product details for {product.name}</h1>
                 <img src={`${apiHost}/images/${product.image_filename}`} className="thumbnail-large" /><br />
-                <b>Cost: </b>${product.cost}<br />
+                <b >Cost: </b>${product.cost}<br />
                 <b>Description: </b>{product.description}<br />
-                <Link to="/" className="btn btn-outline-secondary ms-3">Go back</Link>
-                <button className="btn btn-outline-secondary ms-3" onClick={() => addProduct(id)}>Add to cart</button><br />
+                <Link to="/" className="btn btn-outline-secondary ms-3" style={{ color: "black", backgroundColor: "white" }}>Go back</Link>
+                <button className="btn btn-outline-secondary ms-3" onClick={() => addProduct(id)} style={{ color: "black", backgroundColor: "white" }}>Add to cart</button><br />
             </div>
         </>
     )

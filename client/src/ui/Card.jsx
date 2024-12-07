@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 export default function Card(props) {
     let navigate = useNavigate()
     return (
-        <div className="card mt-2 mb-2" style={{ maxWidth: '500px' }}>
-            <div className="card-body">
+        <div className="card mt-2 mb-2" style={{ maxWidth: '280px' }} >
+            <div className="card-body" >
                 <div className="d-flex align-items-center position-relative" >
                     <img src={`${props.apiHost}/images/${props.product.image_filename}`} className="thumbnail" onClick={() => {
                         navigate("/details/" + props.product.product_id)

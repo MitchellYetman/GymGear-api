@@ -13,8 +13,8 @@ export default function Checkout() {
     if (!isLoggedIn) {
         return (
             <>
-                <p>Please log in to continue </p>
-                <button className="btn btn-outline-secondary ms-3" onClick={() => navigate("/login")}>Login</button>
+                <p style={{ color: "white" }}>Please log in to continue </p>
+                <button className="btn btn-primary" onClick={() => navigate("/login")}>Login</button>
             </>
         );
     }
@@ -55,46 +55,46 @@ export default function Checkout() {
 
     return (
         <>
-            <div>
+            <div style={{ color: "white" }}>
                 <h1>Checkout</h1>
                 <form onSubmit={handleSubmit(completePurchase)} method="post" className="w-25">
                     <div className="mb-3">
-                        <label className="form-label">Street:</label>
+                        <label className="form-label" style={{ color: "white" }}>Street:</label>
                         <input {...register("street", { required: true })} type="text" className="form-control bg-light" style={{ width: '300px' }} />
                         {errors.email && <span className="text-danger">Street is required</span>}
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">City:</label>
+                        <label className="form-label" style={{ color: "white" }}>City:</label>
                         <input {...register("city", { required: true })} type="text" className="form-control bg-light" style={{ width: '300px' }} />
                         {errors.city && <span className="text-danger">City is required</span>}
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Province:</label>
+                        <label className="form-label" style={{ color: "white" }}>Province:</label>
                         <input {...register("province", { required: true })} type="text" className="form-control bg-light" style={{ width: '300px' }} />
                         {errors.province && <span className="text-danger">Province is required</span>}
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Country:</label>
+                        <label className="form-label" style={{ color: "white" }}>Country:</label>
                         <input {...register("country", { required: true })} type="text" className="form-control bg-light" style={{ width: '300px' }} />
                         {errors.country && <span className="text-danger">Country is required</span>}
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Postal code:</label>
+                        <label className="form-label" style={{ color: "white" }}>Postal code:</label>
                         <input {...register("postal_code", { required: true })} type="text" className="form-control bg-light" style={{ width: '300px' }} />
                         {errors.postal_code && <span className="text-danger">Postal code is required</span>}
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Credit card number:</label>
+                        <label className="form-label" style={{ color: "white" }}>Credit card number:</label>
                         <input {...register("credit_card", { required: true })} type="text" className="form-control bg-light" style={{ width: '300px' }} />
                         {errors.credit_card && <span className="text-danger">Credit card number is required</span>}
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Expiry date:</label>
+                        <label className="form-label" style={{ color: "white" }}>Expiry date:</label>
                         <input {...register("credit_expire", { required: true })} type="text" className="form-control bg-light" style={{ width: '300px' }} />
                         {errors.credit_expire && <span className="text-danger">Expiry date is required</span>}
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">CVV:</label>
+                        <label className="form-label" style={{ color: "white" }}>CVV:</label>
                         <input {...register("credit_cvv", { required: true })} type="text" className="form-control bg-light" style={{ width: '300px' }} />
                         {errors.credit_cvv && <span className="text-danger">CVV is required</span>}
                     </div>

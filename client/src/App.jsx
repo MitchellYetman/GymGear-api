@@ -28,14 +28,13 @@ function App() {
 
   return (
     <>
-      <h1>Welcome to GymGear</h1>
-      <p></p>
-      <div>
-        <Nav isLoggedIn={isLoggedIn} />
+      <div style={{ backgroundColor: "#04c17c" }}>
+        <div style={{ paddingRight: "30px" }}><Nav isLoggedIn={isLoggedIn} /></div>
+        <h1 style={{ fontFamily: "Calibri", textAlign: "center", paddingBottom: "10px", color: "white", fontSize: "75px" }}>GymGear</h1>
+        <br />
       </div>
-      <br />
-      <hr />
-      <div>
+
+      <div style={{ backgroundColor: "#303232", minHeight: "100vh", paddingLeft: "10px" }}>
         <Outlet context={{ isLoggedIn, setIsLoggedIn, sessionData }} />
       </div>
     </>

@@ -4,8 +4,8 @@ export default function Confirmation() {
     return (
         <>
             <div>
-                <p>Purchase completed successfully</p>
-                <Link to="/" className="btn btn-outline-secondary ms-3">Continue shopping</Link>
+                <p style={{ color: "white" }}>Purchase completed successfully</p>
+                <Link to="/" className="btn btn-outline-secondary ms-3" style={{ color: "black", backgroundColor: "white" }}>Continue shopping</Link>
             </div>
         </>
     )

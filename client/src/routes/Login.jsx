@@ -40,8 +40,8 @@ export default function Login() {
 
     return (
         <>
-            <div>
-                <h1>Login</h1>
+            <div style={{ color: "white" }}>
+                <h1 >Login</h1>
                 <form onSubmit={handleSubmit(loginUser)} method="post" className="w-25">
                     <div className="mb-3">
                         <label className="form-label">Email:</label>
@@ -55,7 +55,7 @@ export default function Login() {
                     </div>
                     {loginFail && <p className="text-danger">Incorrect username or password.</p>}
                     <button type="submit" className="btn btn-primary">Login</button>
-                    <Link to="/signup" className="btn btn-outline-secondary ms-3">Signup</Link>
+                    <Link to="/signup" className="btn btn-outline-secondary ms-3" style={{ color: "black", backgroundColor: "white" }}>Signup</Link>
                 </form>
             </div>
         </>

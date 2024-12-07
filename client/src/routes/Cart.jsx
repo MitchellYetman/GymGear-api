@@ -43,8 +43,8 @@ export default function Cart() {
     if (cookies.productIDs === '' || products.length === 0) {
         return (
             <>
-                <p>No products in cart</p>
-                <button className="btn btn-outline-secondary ms-3" onClick={() => navigate("/")}>Continue shopping</button>
+                <p style={{ color: "white" }}>No products in cart</p>
+                <button className="btn btn-outline-secondary ms-3" onClick={() => navigate("/")} style={{ color: "black", backgroundColor: "white" }}>Continue shopping</button>
             </>
         );
     }
@@ -76,18 +76,19 @@ export default function Cart() {
 
     return (
         <>
-            <h1>Cart</h1>
-            {
-                uniqueIDs.map(id => (
-                    <CartCard product={products[id - 1]} apiHost={apiHost} quantity={counts[id]} cookie={cookies.productIDs} setCookie={setCookie} />
-                ))
-            }<br />
-            <h4>Subtotal: ${subtotal.toFixed(2)}</h4>
-            <h4>Tax: ${(subtotal * 0.15).toFixed(2)}</h4>
-            <h2>Total: ${(subtotal * 1.15).toFixed(2)}</h2>
-            <button className="btn btn-outline-secondary ms-3" onClick={() => navigate('/')}>Continue shopping</button>
-            <button className="btn btn-outline-secondary ms-3" onClick={() => navigate('/checkout')}>Go to checkout</button>
-
+            <div style={{ color: "white" }}>
+                <h1>Cart</h1>
+                {
+                    uniqueIDs.map(id => (
+                        <CartCard product={products[id - 1]} apiHost={apiHost} quantity={counts[id]} cookie={cookies.productIDs} setCookie={setCookie} />
+                    ))
+                }<br />
+                <h4>Subtotal: ${subtotal.toFixed(2)}</h4>
+                <h4>Tax: ${(subtotal * 0.15).toFixed(2)}</h4>
+                <h2>Total: ${(subtotal * 1.15).toFixed(2)}</h2>
+                <button className="btn btn-primary" onClick={() => navigate('/checkout')} >Go to checkout</button>
+                <button className="btn btn-outline-secondary ms-3" onClick={() => navigate('/')} style={{ color: "black", backgroundColor: "white" }}>Continue shopping</button>
+            </div>
 
         </>
     )

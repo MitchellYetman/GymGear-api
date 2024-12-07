@@ -32,14 +32,22 @@ export default function Home() {
 
     return (
         <>
-            <h1>Product List</h1>
-            {
-                products.length > 0 ?
-                    products.map(product => (
-                        <Card product={product} apiHost={apiHost} />
-                    )) :
-                    <p>No products.</p>
-            }
+            <div >
+                <br />
+                <div style={{ textAlign: "center" }} >
+                    <h1 style={{ color: "white" }}>Products</h1>
+                </div>
+                <div className="card-container" >
+                    {
+                        products.length > 0 ?
+                            products.map(product => (
+                                <div><Card product={product} apiHost={apiHost} /></div>
+                            )) :
+                            <p>No products.</p>
+                    }
+                </div>
+
+            </div>
         </>
     )
 }

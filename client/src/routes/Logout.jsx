@@ -28,10 +28,12 @@ export default function Logout() {
     }, []);
     return (
         <>
-            <h1>Logout</h1>
-            <p>{status}</p>
-            <Link to="/login" className="btn btn-outline-secondary ms-3">Login</Link>
-            <Link to="/" className="btn btn-outline-secondary ms-3">Return to homepage</Link>
+            <div style={{ color: "white" }}>
+                <h1>Logout</h1>
+                <p>{status}</p>
+                <Link to="/login" className="btn btn-outline-secondary ms-3" style={{ color: "black", backgroundColor: "white" }}>Login</Link>
+                <Link to="/" className="btn btn-outline-secondary ms-3" style={{ color: "black", backgroundColor: "white" }}>Return to homepage</Link>
+            </div>
         </>
     )
 }

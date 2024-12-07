@@ -1,13 +1,44 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Nav(props) {
+    let navigate = useNavigate();
     return (
         <>
-            <Link to="/">Home</Link>
-            {props.isLoggedIn && <Link to="/logout">Logout</Link>}
-            {!props.isLoggedIn && <Link to="/login">Login</Link>}
-            <Link to="/cart"><i className="bi bi-cart"></i></Link>
-            {!props.isLoggedIn && <Link to="/signup">Signup</Link>}
+            <div className="d-flex align-items-center position-relative" style={{ color: "white", justifyContent: "end", fontSize: "20px" }}>
+                <div onClick={() => { navigate("/") }}>
+                    <b>Home</b>
+                </div>
+
+                {props.isLoggedIn &&
+                    <div className="d-flex align-items-center position-relative">
+                        <div style={{ fontSize: "24px", paddingRight: "5px", paddingLeft: "5px" }}>|</div>
+                        <div onClick={() => { navigate("/logout") }}>
+                            <b>Logout</b>
+                        </div>
+                    </div>
+                }
+
+                {!props.isLoggedIn &&
+                    <div className="d-flex align-items-center position-relative">
+                        <div style={{ fontSize: "24px", paddingRight: "5px", paddingLeft: "5px" }}>|</div>
+                        <div onClick={() => { navigate("/login") }}>
+                            <b>Login</b>
+                        </div>
+                        <div style={{ fontSize: "24px", paddingRight: "5px", paddingLeft: "5px" }}>|</div>
+                        <div onClick={() => { navigate("/signup") }}>
+                            <b>Signup</b>
+                        </div>
+                    </div>
+                }
+
+                <div onClick={() => { navigate("cart") }} >
+                    <div className="d-flex align-items-center position-relative">
+                        <div style={{ fontSize: "24px", paddingRight: "5px", paddingLeft: "5px" }}>|</div>
+                        <i className="bi bi-cart"></i>
+                    </div>
+                </div>
+            </div >
+
 
         </>
     )
